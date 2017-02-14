@@ -3,6 +3,7 @@ package geometry
 import "fmt"
 
 // A Path is a journey connecting the points with straight lines
+// Here Path is a named slice type, not a struct type like Point
 type Path []Point
 
 func (path Path) Distance() float64 {

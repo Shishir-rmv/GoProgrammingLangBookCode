@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/Shishir-rmv/GoProgrammingLangBookCode/06_methods/geometry"
+	"image/color"
 )
 
 func main() {
@@ -21,9 +22,26 @@ func main() {
 
 	fmt.Println(p)
 
+	//Calling methods with a Pointer Receiver
 	r := &geometry.Point{1, 2}
 	r.ScaleBy(2)
 	fmt.Println(*r)
 
-}
+	// We can select the fields of ColoredPoint that were contributed by the embedded Point without mentioning Point
+	var cp geometry.ColoredPoint
+	cp.X = 1
+	fmt.Println(cp.Point.X)
+	cp.Point.Y = 2
+	fmt.Println(cp.Y)
 
+	// We can call methods of the embedded Point field using a receiver of type ColoredPoint, even though
+	// ColoredPoint has no declared methods:
+	red := color.RGBA{255, 0, 0, 255}
+	blue := color.RGBA{0, 0, 255, 255}
+	var p1 = geometry.ColoredPoint{geometry.Point{1, 1}, red}
+	var q2 = geometry.ColoredPoint{geometry.Point{5, 4}, blue}
+	fmt.Println(p1.Distance(q2.Point))
+	p1.ScaleBy(2)
+	q2.ScaleBy(2)
+	fmt.Println(p1.Distance(q2.Point))
+}
