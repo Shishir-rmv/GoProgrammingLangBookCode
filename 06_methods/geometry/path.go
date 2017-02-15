@@ -19,3 +19,18 @@ func (path Path) Distance() float64 {
 func (p Point) String() string {
 	return fmt.Sprintf("(x: %g, y: %g)", p.X, p.Y)
 }
+
+// Method Expressions
+// A method expression yields a function value with a regular first parameter
+// taking the place of the receiver, so it can be called in the usual way
+func (path Path) TranslateBy(offset Point, add bool) {
+	var op func(p, q Point) Point
+	if add {
+		op = Point.Add
+	} else {
+		op = Point.Sub
+	}
+	for i := range path {
+		path[i] = op(path[i], offset)
+	}
+}

@@ -38,10 +38,13 @@ func main() {
 	// ColoredPoint has no declared methods:
 	red := color.RGBA{255, 0, 0, 255}
 	blue := color.RGBA{0, 0, 255, 255}
-	var p1 = geometry.ColoredPoint{geometry.Point{1, 1}, red}
-	var q2 = geometry.ColoredPoint{geometry.Point{5, 4}, blue}
-	fmt.Println(p1.Distance(q2.Point))
-	p1.ScaleBy(2)
-	q2.ScaleBy(2)
-	fmt.Println(p1.Distance(q2.Point))
+	var a = geometry.ColoredPoint{geometry.Point{1, 1}, red}
+	var b = geometry.ColoredPoint{geometry.Point{5, 4}, blue}
+	fmt.Println(a.Distance(b.Point))
+	a.ScaleBy(2)
+	b.ScaleBy(2)
+	fmt.Println(a.Distance(b.Point))
+
+	perim.TranslateBy(geometry.Point{1, 1}, true)
+	fmt.Println(perim)
 }
